@@ -4,15 +4,22 @@ import { ROOT_QUERY } from './App'
 
 const Users = () =>
     <Query query={ROOT_QUERY}>
-        {({ data, loading}) => loading ? 
+        {({ data, loading, refetch }) => loading ? 
             <p>loadin users...</p> :
-            <UserList count={data.totalUsers} users={data.allUsers} />
+            <UserList 
+                count={data.totalUsers} 
+                users={data.allUsers} 
+                refetchUsers={refetch}
+            />
         }
     </Query>
 
-const UserList = ({ count, users }) =>
+const UserList = ({ count, users, refetchUsers }) =>
     <div>
         <p>{count} Users</p>
+        <button onClick={() => refetchUsers()}>
+            Refetch Users
+        </button>
         <ul>
             {users.map(user => 
                 <UserListItem key={user.githubLogin}
@@ -22,7 +29,6 @@ const UserList = ({ count, users }) =>
             )}
         </ul>
     </div>
-
 
 const UserListItem = ({ name, avatar }) =>
     <li>
