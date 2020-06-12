@@ -14,9 +14,9 @@ const query = gql`
     totalPhotos
   }
 `
-
+console.log('cache', client.extract())
 client.query({query})
-  .then(({ data }) => console.log('data', data))
+  .then(() => console.log('cache', client.extract()))
   .catch(console.error)
 
 ReactDOM.render(
