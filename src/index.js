@@ -4,25 +4,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import ApolloClient, { gql } from 'apollo-boost'
+import { ApolloProvider } from 'react-apollo'
+import ApolloClient from 'apollo-boost'
 
 const client = new ApolloClient({ uri: 'http://localhost:4000/graphql' })
 
-const query = gql`
-  {
-    totalUsers
-    totalPhotos
-  }
-`
-console.log('cache', client.extract())
-client.query({query})
-  .then(() => console.log('cache', client.extract()))
-  .catch(console.error)
-
 ReactDOM.render(
-  <React.StrictMode>
+  <ApolloProvider client={client}>
     <App />
-  </React.StrictMode>,
+  </ApolloProvider>,
   document.getElementById('root')
 );
 
