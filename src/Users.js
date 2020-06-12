@@ -31,7 +31,11 @@ const UserList = ({ count, users, refetchUsers }) =>
         <button onClick={() => refetchUsers()}>
             Refetch Users
         </button>
-        <Mutation mutation={ADD_FAKE_USERS_MUTATION} variables={{ count: 1}}>
+        <Mutation
+            mutation={ADD_FAKE_USERS_MUTATION} 
+            variables={{ count: 1}}
+            refetchQueries={[{ query: ROOT_QUERY }]}
+        >
             { addFakeUsers =>
                 <button onClick={addFakeUsers}>Add Fake Users</button>
             }
