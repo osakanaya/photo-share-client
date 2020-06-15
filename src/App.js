@@ -1,11 +1,8 @@
-import React from 'react';
-import './App.css';
-
+import React from 'react'
 import Users from './Users'
-import { gql } from 'apollo-boost'
-
 import { BrowserRouter } from 'react-router-dom'
 import AuthorizedUser from './AuthorizedUser'
+import { gql } from 'apollo-boost'
 
 export const ROOT_QUERY = gql`
   query allUsers {
@@ -29,4 +26,4 @@ const App = () =>
     </div>
   </BrowserRouter>
 
-export default App;
+export default App
